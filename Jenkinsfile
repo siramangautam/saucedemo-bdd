@@ -1,4 +1,4 @@
-def run(String cmd) {
+def runCmd(String cmd) {
     if (isUnix()) { sh cmd } else { bat cmd }
 }
 
@@ -22,10 +22,10 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                run("mvn clean test -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} -Dcucumber.filter.tags=\"${params.TAGS}\"")
-            }
-        }
+    steps {
+        runCmd("mvn clean test -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} -Dcucumber.filter.tags=\"${params.TAGS}\"")
+    }
+}
     }
 
     post {
